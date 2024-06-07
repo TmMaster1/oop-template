@@ -9,6 +9,7 @@
     - Promasaj
     - Potapanje
     - Pobedu
+
 Na kraju igre, ponuditi novu partiju ili izlazak. 
 ## Logicki
 - Odabir velicine igre. To se vrsi pred pocetak, koristeci neku formu.
