@@ -20,3 +20,13 @@ Na kraju igre, ponuditi novu partiju ili izlazak.
 - Na kraju igre, upisuje se rezultat igre u neki txt fajl.
 - Koriscenjem gornjeg menija se moze videti istorija igara.
 
+## Uputstvo
+- napraviti prazan folder (najlakse na particiji D:)
+- preko powershell-a pristupiti folderu (cd komanda)
+- sa github-a kopirati url za kloniranje
+- komanda git clone url
+- po zavrsetku rada komanda git add .
+- git commit -m "Ukratko sta je promenjeno"
+- git push
+
+Ukoliko dodje do greske permission denied, iz Credential Managera izbrisati sve vezano za git
