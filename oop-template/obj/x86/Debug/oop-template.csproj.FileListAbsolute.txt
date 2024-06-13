@@ -1,0 +1,12 @@
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\bin\Debug\oop-template.exe.config
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\bin\Debug\oop-template.exe
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\bin\Debug\oop-template.pdb
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.AssemblyReference.cache
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.Form1.resources
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaIzborTable.resources
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaPostavljanjeBrodova.resources
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.Properties.Resources.resources
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.GenerateResource.cache
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.CoreCompileInputs.cache
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.exe
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.pdb
