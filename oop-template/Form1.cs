@@ -95,13 +95,13 @@ namespace oop_template
                     brodovi.Add(new Brod(2));
                     brodovi.Add(new Brod(2));
                     break;
-                case 8: // Ako je u pitanju tabla 4x4, ponudjeni su brodovi velicina : 5, 4, 3, 3
+                case 8: // Ako je u pitanju tabla 8x8, ponudjeni su brodovi velicina : 5, 4, 3, 3
                     brodovi.Add(new Brod(5));
                     brodovi.Add(new Brod(4));
                     brodovi.Add(new Brod(3));
                     brodovi.Add(new Brod(3));
                     break;
-                case 10: // Ako je u pitanju tabla 4x4, ponudjeni su brodovi velicina : 2, 2, 2, 2, 3, 3, 3, 4, 4, 6
+                case 10: // Ako je u pitanju tabla 10x10, ponudjeni su brodovi velicina : 2, 2, 2, 2, 3, 3, 3, 4, 4, 6
                     brodovi.Add(new Brod(2));
                     brodovi.Add(new Brod(2));
                     brodovi.Add(new Brod(2));
@@ -117,7 +117,7 @@ namespace oop_template
             return brodovi;
         }
 
-        private List<Brod> GenerisiNasumicneBrodove(int velicinaTable, List<Brod> brodovi) // mora ovo da se proveri
+        private List<Brod> GenerisiNasumicneBrodove(int velicinaTable, List<Brod> brodovi)
         {
             var random = new Random();
             var postavljeniBrodovi = new List<Brod>();
@@ -131,11 +131,12 @@ namespace oop_template
                 {
                     int x = random.Next(velicinaTable);
                     int y = random.Next(velicinaTable);
+                    bool horizontalno = random.Next(2) == 0;
 
-                    if (MozetePostavitiBrodKompjuter(x, y, brod.Velicina, poljaTable))
+                    if (MozetePostavitiBrodKompjuter(x, y, brod.Velicina, poljaTable, horizontalno))
                     {
-                        PostaviBrodKompjuter(x, y, brod.Velicina, poljaTable);
-                        postavljeniBrodovi.Add(new Brod(brod.Velicina) { Pozicije = DobijPozicije(x, y, brod.Velicina) });
+                        PostaviBrodKompjuter(x, y, brod.Velicina, poljaTable, horizontalno);
+                        postavljeniBrodovi.Add(new Brod(brod.Velicina) { Pozicije = DobijPozicije(x, y, brod.Velicina, horizontalno) });
                         brodPostavljen = true;
                     }
                 }
@@ -144,20 +145,27 @@ namespace oop_template
             return postavljeniBrodovi;
         }
 
-        private bool MozetePostavitiBrodKompjuter(int x, int y, int velicina, bool[,] poljaTable)
+        private bool MozetePostavitiBrodKompjuter(int x, int y, int velicina, bool[,] poljaTable, bool horizontalno)
         {
-            if (x + velicina > poljaTable.GetLength(0)) return false;
-
-            for (int i = 0; i < velicina; i++)
+            if (horizontalno)
             {
-                if (poljaTable[x + i, y])
-                    return false;
+                if (x + velicina > poljaTable.GetLength(0)) return false;
 
-                // Provera okolnih polja
-                if (!PoljeJeSlobodnoKompjuter(x + i - 1, y - 1, poljaTable) || !PoljeJeSlobodnoKompjuter(x + i, y - 1, poljaTable) || !PoljeJeSlobodnoKompjuter(x + i + 1, y - 1, poljaTable) ||
-                    !PoljeJeSlobodnoKompjuter(x + i - 1, y, poljaTable) || !PoljeJeSlobodnoKompjuter(x + i + 1, y, poljaTable) ||
-                    !PoljeJeSlobodnoKompjuter(x + i - 1, y + 1, poljaTable) || !PoljeJeSlobodnoKompjuter(x + i, y + 1, poljaTable) || !PoljeJeSlobodnoKompjuter(x + i + 1, y + 1, poljaTable))
-                    return false;
+                for (int i = 0; i < velicina; i++)
+                {
+                    if (poljaTable[x + i, y] || !PoljeJeSlobodnoKompjuter(x + i, y, poljaTable))
+                        return false;
+                }
+            }
+            else
+            {
+                if (y + velicina > poljaTable.GetLength(1)) return false;
+
+                for (int i = 0; i < velicina; i++)
+                {
+                    if (poljaTable[x, y + i] || !PoljeJeSlobodnoKompjuter(x, y + i, poljaTable))
+                        return false;
+                }
             }
 
             return true;
@@ -165,32 +173,68 @@ namespace oop_template
 
         private bool PoljeJeSlobodnoKompjuter(int x, int y, bool[,] poljaTable)
         {
-            if (x < 0 || y < 0 || x >= poljaTable.GetLength(0) || y >= poljaTable.GetLength(1))
-                return true;
-            return !poljaTable[x, y];
+            int[] dx = { -1, 0, 1 };
+            int[] dy = { -1, 0, 1 };
+
+            foreach (var i in dx)
+            {
+                foreach (var j in dy)
+                {
+                    int nx = x + i;
+                    int ny = y + j;
+
+                    if (nx >= 0 && ny >= 0 && nx < poljaTable.GetLength(0) && ny < poljaTable.GetLength(1))
+                    {
+                        if (poljaTable[nx, ny])
+                            return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
-        private void PostaviBrodKompjuter(int x, int y, int velicina, bool[,] poljaTable)
+        private void PostaviBrodKompjuter(int x, int y, int velicina, bool[,] poljaTable, bool horizontalno)
         {
-            for (int i = 0; i < velicina; i++)
+            if (horizontalno)
             {
-                poljaTable[x + i, y] = true;
+                for (int i = 0; i < velicina; i++)
+                {
+                    poljaTable[x + i, y] = true;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < velicina; i++)
+                {
+                    poljaTable[x, y + i] = true;
+                }
             }
         }
 
-        private List<Point> DobijPozicije(int x, int y, int velicina)
+        private List<Point> DobijPozicije(int x, int y, int velicina, bool horizontalno)
         {
             List<Point> pozicije = new List<Point>();
-            for (int i = 0; i < velicina; i++)
+            if (horizontalno)
             {
-                pozicije.Add(new Point(x + i, y));
+                for (int i = 0; i < velicina; i++)
+                {
+                    pozicije.Add(new Point(x + i, y));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < velicina; i++)
+                {
+                    pozicije.Add(new Point(x, y + i));
+                }
             }
             return pozicije;
         }
 
         private void ZapocniIgru(List<Brod> brodoviIgrac1, List<Brod> brodoviIgrac2, int velicinaTable, bool jeDvaIgraca)
         {
-            // Ovde treba da se uradi implementacijal logike za pocetak igre
+            // Ovde treba da se uradi implementacija logike za pocetak igre
         }
     }
 }

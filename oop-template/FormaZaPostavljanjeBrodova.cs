@@ -16,9 +16,16 @@ namespace oop_template
         private List<Brod> brodovi;
         private List<Brod> postavljeniBrodovi;
         private Button[,] poljaTable;
-        private int trenutniBrodIndex;
         private Brod trenutniBrod;
-        private bool postavljanjeHorizontalno;
+        private Smer postavljanjeSmer;
+
+        private enum Smer
+        {
+            Gore,
+            Dole,
+            Levo,
+            Desno
+        }
 
         public List<Brod> PostavljeniBrodovi
         {
@@ -28,14 +35,9 @@ namespace oop_template
         public FormaZaPostavljanjeBrodova(int velicinaTable, List<Brod> brodovi)
         {
             this.velicinaTable = velicinaTable;
-            this.brodovi = brodovi;
+            this.brodovi = new List<Brod>(brodovi); // Napravimo kopiju liste brodova
             this.postavljeniBrodovi = new List<Brod>();
             CustomInitializeComponent();
-
-            // Inicijalizacija postavljanja prvog broda
-            this.trenutniBrodIndex = 0;
-            PostaviTrenutniBrod();
-            obrisiButton.Enabled = false; // Onemogućavamo brisanje broda odmah na početku
         }
 
         private void CustomInitializeComponent()
@@ -49,8 +51,8 @@ namespace oop_template
                 for (int j = 0; j < velicinaTable; j++)
                 {
                     poljaTable[i, j] = new Button();
-                    poljaTable[i, j].Size = new Size(30, 30);
-                    poljaTable[i, j].Location = new Point(30 * i, 30 * j);
+                    poljaTable[i, j].Size = new Size(40, 40); // Povećana veličina
+                    poljaTable[i, j].Location = new Point(40 * i, 40 * j); // Povećan razmak
                     poljaTable[i, j].Click += new EventHandler(PoljaTable_Click);
                     this.Controls.Add(poljaTable[i, j]);
                 }
@@ -58,30 +60,55 @@ namespace oop_template
 
             // Labela za prikaz trenutnog broda
             this.trenutniBrodLabel = new Label();
-            this.trenutniBrodLabel.Location = new Point(30 * velicinaTable, 30);
+            this.trenutniBrodLabel.Location = new Point(40 * velicinaTable, 30);
             this.trenutniBrodLabel.AutoSize = true;
             this.Controls.Add(this.trenutniBrodLabel);
 
             // Dugme za potvrdu
             this.potvrdiButton = new Button();
             this.potvrdiButton.Text = "Potvrdi";
-            this.potvrdiButton.Location = new Point(30 * velicinaTable, 60);
+            this.potvrdiButton.Location = new Point(40 * velicinaTable, 60);
             this.potvrdiButton.Click += new EventHandler(PotvrdiButton_Click);
             this.potvrdiButton.Enabled = false; // Disabled until all ships are placed
             this.Controls.Add(this.potvrdiButton);
 
-            // Dugme za brisanje broda
-            this.obrisiButton = new Button();
-            this.obrisiButton.Text = "Obriši brod";
-            this.obrisiButton.Location = new Point(30 * velicinaTable, 90);
-            this.obrisiButton.Click += new EventHandler(ObrisiButton_Click);
-            this.obrisiButton.Enabled = false; // Disabled until at least one ship is placed
-            this.Controls.Add(this.obrisiButton);
+            // ComboBox za izbor smera postavljanja broda
+            this.smerComboBox = new ComboBox();
+            this.smerComboBox.Location = new Point(40 * velicinaTable, 90);
+            this.smerComboBox.Items.AddRange(new string[] { "Gore", "Dole", "Levo", "Desno" });
+            this.smerComboBox.SelectedIndex = 0;
+            this.smerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.smerComboBox.SelectedIndexChanged += new EventHandler(SmerComboBox_SelectedIndexChanged);
+            this.Controls.Add(this.smerComboBox);
+
+            // ComboBox za izbor broda za postavljanje
+            this.brodComboBox = new ComboBox();
+            this.brodComboBox.Location = new Point(40 * velicinaTable, 120);
+            foreach (var brod in brodovi)
+            {
+                this.brodComboBox.Items.Add($"Brod veličine {brod.Velicina}");
+            }
+            this.brodComboBox.SelectedIndex = 0;
+            this.brodComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.brodComboBox.SelectedIndexChanged += new EventHandler(BrodComboBox_SelectedIndexChanged);
+            this.Controls.Add(this.brodComboBox);
+
+            // ComboBox za izbor akcije (Postavi ili Obriši)
+            this.akcijaComboBox = new ComboBox();
+            this.akcijaComboBox.Location = new Point(40 * velicinaTable, 150);
+            this.akcijaComboBox.Items.AddRange(new string[] { "Postavi", "Obriši" });
+            this.akcijaComboBox.SelectedIndex = 0;
+            this.akcijaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.akcijaComboBox.SelectedIndexChanged += new EventHandler(AkcijaComboBox_SelectedIndexChanged);
+            this.Controls.Add(this.akcijaComboBox);
+
+            // Postavljanje početnih vrednosti
+            PostaviTrenutniBrod();
 
             // 
             // FormaZaPostavljanjeBrodova
             // 
-            this.ClientSize = new System.Drawing.Size(30 * (velicinaTable + 2), 30 * velicinaTable);
+            this.ClientSize = new System.Drawing.Size(40 * (velicinaTable + 5), 40 * velicinaTable);
             this.Name = "FormaZaPostavljanjeBrodova";
             this.Text = "Postavljanje brodova";
             this.ResumeLayout(false);
@@ -93,88 +120,53 @@ namespace oop_template
             // Kod koji želite da izvršite kada se forma učita
         }
 
-        private void PostaviBrod(int x, int y)
-        {
-            poljaTable[x, y].BackColor = Color.Gray; // Postavlja boju polja na sivu kako bi označilo deo broda
-        }
-
-        // Metoda za postavljanje dela broda na kliknuto polje
         private void PoljaTable_Click(object sender, EventArgs e)
         {
             Button pritisnutoDugme = sender as Button;
             if (pritisnutoDugme == null)
                 return;
 
-            int x = pritisnutoDugme.Location.X / 30;
-            int y = pritisnutoDugme.Location.Y / 30;
+            int x = pritisnutoDugme.Location.X / 40;
+            int y = pritisnutoDugme.Location.Y / 40;
 
-            if (MozetePostavitiDeoBrod(x, y))
+            if (akcijaComboBox.SelectedIndex == 0) // Postavi
             {
-                PostaviDeoBrod(x, y);
-            }
-            else
-            {
-                MessageBox.Show("Ne možete postaviti deo broda na ovu poziciju. Pokušajte ponovo.");
-            }
-        }
-
-        private void ObrisiButton_Click(object sender, EventArgs e)
-        {
-            trenutniBrodLabel.Text = "Kliknite na bilo koji deo broda koji želite da obrišete.";
-            foreach (var brod in postavljeniBrodovi)
-            {
-                foreach (var pozicija in brod.Pozicije)
+                if (MozetePostavitiBrod(x, y))
                 {
-                    poljaTable[pozicija.X, pozicija.Y].Click += ObrisiBrodClick;
+                    PostaviBrodNaPolje(x, y);
+                }
+                else
+                {
+                    MessageBox.Show("Ne možete postaviti brod na ovu poziciju. Pokušajte ponovo.");
                 }
             }
-        }
-
-        private void ObrisiBrodClick(object sender, EventArgs e)
-        {
-            Button pritisnutoDugme = sender as Button;
-            if (pritisnutoDugme == null)
-                return;
-
-            int x = pritisnutoDugme.Location.X / 30;
-            int y = pritisnutoDugme.Location.Y / 30;
-
-            Brod brodZaBrisanje = null;
-
-            foreach (var brod in postavljeniBrodovi)
+            else if (akcijaComboBox.SelectedIndex == 1) // Obriši
             {
-                if (brod.Pozicije.Contains(new Point(x, y)))
+                if (poljaTable[x, y].BackColor == Color.Gray)
                 {
-                    brodZaBrisanje = brod;
-                    break;
+                    Brod brodZaBrisanje = null;
+
+                    foreach (var brod in postavljeniBrodovi)
+                    {
+                        if (brod.Pozicije.Contains(new Point(x, y)))
+                        {
+                            brodZaBrisanje = brod;
+                            break;
+                        }
+                    }
+
+                    if (brodZaBrisanje != null)
+                    {
+                        ObrisiBrod(brodZaBrisanje);
+                        brodComboBox.Items.Insert(0, $"Brod veličine {brodZaBrisanje.Velicina}");
+                        brodovi.Insert(0, brodZaBrisanje);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Nema broda na ovoj poziciji. Pokušajte ponovo.");
                 }
             }
-
-            if (brodZaBrisanje != null)
-            {
-                ObrisiBrod(brodZaBrisanje);
-                trenutniBrodLabel.Text = $"Postavite brod veličine {brodZaBrisanje.Velicina}";
-                trenutniBrod = brodZaBrisanje;
-                trenutniBrodIndex = brodovi.IndexOf(brodZaBrisanje);
-
-                foreach (var pozicija in brodZaBrisanje.Pozicije)
-                {
-                    poljaTable[pozicija.X, pozicija.Y].Click -= ObrisiBrodClick;
-                }
-            }
-
-            obrisiButton.Enabled = postavljeniBrodovi.Count > 0;
-        }
-
-        private void ObrisiBrod(Brod brod)
-        {
-            foreach (var pozicija in brod.Pozicije)
-            {
-                poljaTable[pozicija.X, pozicija.Y].BackColor = default(Color);
-                poljaTable[pozicija.X, pozicija.Y].Enabled = true;
-            }
-            postavljeniBrodovi.Remove(brod);
-            brodovi.Insert(trenutniBrodIndex, brod); // Vraćamo brod u listu za ponovno postavljanje
         }
 
         private void PotvrdiButton_Click(object sender, EventArgs e)
@@ -185,57 +177,83 @@ namespace oop_template
 
         private void PostaviTrenutniBrod()
         {
-            trenutniBrod = brodovi[trenutniBrodIndex];
-            trenutniBrod.Pozicije.Clear();
-            trenutniBrodLabel.Text = $"Postavite brod veličine {trenutniBrod.Velicina}";
-            obrisiButton.Enabled = postavljeniBrodovi.Count > 0;
+            if (brodovi.Count > 0)
+            {
+                trenutniBrod = brodovi[brodComboBox.SelectedIndex];
+                trenutniBrod.Pozicije.Clear();
+                trenutniBrodLabel.Text = $"Postavite brod veličine {trenutniBrod.Velicina}";
+            }
+            else
+            {
+                trenutniBrod = null;
+                trenutniBrodLabel.Text = "Svi brodovi su postavljeni.";
+                potvrdiButton.Enabled = true;
+            }
         }
 
-        private bool MozetePostavitiDeoBrod(int x, int y)
+        private bool MozetePostavitiBrod(int x, int y)
         {
-            if (poljaTable[x, y].BackColor == Color.Gray)
-                return false; // Polje je već zauzeto
+            if (trenutniBrod == null)
+                return false;
 
-            // Provera kontinuiteta postavljanja broda
-            if (trenutniBrod.Pozicije.Count > 0)
+            List<Point> pozicijeZaPostavljanje = new List<Point>();
+
+            for (int i = 0; i < trenutniBrod.Velicina; i++)
             {
-                var zadnjaPozicija = trenutniBrod.Pozicije[trenutniBrod.Pozicije.Count - 1];
+                int nx = x;
+                int ny = y;
 
-                if (trenutniBrod.Pozicije.Count == 1)
+                switch (postavljanjeSmer)
                 {
-                    // Prvi deo broda je postavljen, čekamo drugi deo da odredimo orijentaciju
-                    bool validPosHorizontalno = (x == zadnjaPozicija.X && Math.Abs(y - zadnjaPozicija.Y) == 1);
-                    bool validPosVertikalno = (y == zadnjaPozicija.Y && Math.Abs(x - zadnjaPozicija.X) == 1);
-                    return validPosHorizontalno || validPosVertikalno;
+                    case Smer.Gore:
+                        ny = y - i;
+                        break;
+                    case Smer.Dole:
+                        ny = y + i;
+                        break;
+                    case Smer.Levo:
+                        nx = x - i;
+                        break;
+                    case Smer.Desno:
+                        nx = x + i;
+                        break;
                 }
-                else
-                {
-                    // Nakon što smo postavili dva dela broda, odredili smo orijentaciju
-                    if (postavljanjeHorizontalno)
-                    {
-                        if (x != zadnjaPozicija.X || Math.Abs(y - zadnjaPozicija.Y) != 1)
-                            return false; // Horizontalna orijentacija, ali nije kontinuitet
-                    }
-                    else
-                    {
-                        if (y != zadnjaPozicija.Y || Math.Abs(x - zadnjaPozicija.X) != 1)
-                            return false; // Vertikalna orijentacija, ali nije kontinuitet
-                    }
-                }
+
+                if (nx < 0 || ny < 0 || nx >= velicinaTable || ny >= velicinaTable)
+                    return false; // Prelazi granice table
+
+                if (poljaTable[nx, ny].BackColor == Color.Gray)
+                    return false; // Polje je već zauzeto
+
+                pozicijeZaPostavljanje.Add(new Point(nx, ny));
             }
 
-            // Provera da li su susedna polja slobodna (uključujući dijagonalno)
-            for (int dx = -1; dx <= 1; dx++)
+            // Provera susednih polja
+            foreach (var pozicija in pozicijeZaPostavljanje)
             {
-                for (int dy = -1; dy <= 1; dy++)
-                {
-                    int nx = x + dx;
-                    int ny = y + dy;
+                if (!JePoljeSlobodno(pozicija.X, pozicija.Y))
+                    return false;
+            }
 
-                    if (nx >= 0 && nx < velicinaTable && ny >= 0 && ny < velicinaTable)
+            return true;
+        }
+
+        private bool JePoljeSlobodno(int x, int y)
+        {
+            int[] dx = { -1, 0, 1 };
+            int[] dy = { -1, 0, 1 };
+
+            foreach (var i in dx)
+            {
+                foreach (var j in dy)
+                {
+                    int nx = x + i;
+                    int ny = y + j;
+
+                    if (nx >= 0 && ny >= 0 && nx < velicinaTable && ny < velicinaTable)
                     {
                         if (poljaTable[nx, ny].BackColor == Color.Gray)
-                            return false; // Susedno polje je zauzeto
+                            return false;
                     }
                 }
             }
@@ -243,43 +261,108 @@ namespace oop_template
             return true;
         }
 
-        private void PostaviDeoBrod(int x, int y)
+        private void PostaviBrodNaPolje(int x, int y)
         {
-            poljaTable[x, y].BackColor = Color.Gray; // Oboji polje u sivo
-            poljaTable[x, y].Enabled = false; // Onemogućava ponovni klik na isto polje
-            trenutniBrod.Pozicije.Add(new Point(x, y));
-
-            if (trenutniBrod.Pozicije.Count == 2)
+            for (int i = 0; i < trenutniBrod.Velicina; i++)
             {
-                // Određujemo orijentaciju broda na osnovu prve dve pozicije
-                postavljanjeHorizontalno = trenutniBrod.Pozicije[0].Y == trenutniBrod.Pozicije[1].Y;
+                int nx = x;
+                int ny = y;
+
+                switch (postavljanjeSmer)
+                {
+                    case Smer.Gore:
+                        ny = y - i;
+                        break;
+                    case Smer.Dole:
+                        ny = y + i;
+                        break;
+                    case Smer.Levo:
+                        nx = x - i;
+                        break;
+                    case Smer.Desno:
+                        nx = x + i;
+                        break;
+                }
+
+                poljaTable[nx, ny].BackColor = Color.Gray;
+                trenutniBrod.Pozicije.Add(new Point(nx, ny));
             }
 
-            // Proveravamo da li je brod kompletiran
-            if (trenutniBrod.Pozicije.Count == trenutniBrod.Velicina)
-            {
-                postavljeniBrodovi.Add(trenutniBrod);
-                trenutniBrodIndex++;
+            postavljeniBrodovi.Add(trenutniBrod);
+            brodovi.Remove(trenutniBrod);
+            brodComboBox.Items.RemoveAt(brodComboBox.SelectedIndex);
 
-                if (trenutniBrodIndex < brodovi.Count)
-                {
-                    PostaviTrenutniBrod();
-                }
-                else
-                {
-                    trenutniBrodLabel.Text = "Svi brodovi su postavljeni.";
-                    potvrdiButton.Enabled = true;
-                    obrisiButton.Enabled = true;
-                }
+            if (brodovi.Count > 0)
+            {
+                brodComboBox.SelectedIndex = 0;
+                PostaviTrenutniBrod();
+            }
+            else
+            {
+                trenutniBrodLabel.Text = "Svi brodovi su postavljeni.";
+                trenutniBrod = null;
+                potvrdiButton.Enabled = true;
             }
         }
 
+        private void ObrisiBrod(Brod brod)
+        {
+            foreach (var pozicija in brod.Pozicije)
+            {
+                poljaTable[pozicija.X, pozicija.Y].BackColor = Color.White;
+            }
+            postavljeniBrodovi.Remove(brod);
+        }
 
-        private Label trenutniBrodLabel;
+        private void SmerComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (smerComboBox.SelectedIndex)
+            {
+                case 0:
+                    postavljanjeSmer = Smer.Gore;
+                    break;
+                case 1:
+                    postavljanjeSmer = Smer.Dole;
+                    break;
+                case 2:
+                    postavljanjeSmer = Smer.Levo;
+                    break;
+                case 3:
+                    postavljanjeSmer = Smer.Desno;
+                    break;
+            }
+        }
+
+        private void BrodComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PostaviTrenutniBrod();
+        }
+
+        private void AkcijaComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateControlsState();
+        }
+
+        private void UpdateControlsState()
+        {
+            if (akcijaComboBox.SelectedIndex == 0) // Postavi
+            {
+                brodComboBox.Enabled = true;
+                smerComboBox.Enabled = true;
+            }
+            else if (akcijaComboBox.SelectedIndex == 1) // Obriši
+            {
+                brodComboBox.Enabled = false;
+                smerComboBox.Enabled = false;
+            }
+        }
+
         private Button potvrdiButton;
-        private Button obrisiButton;
+        private Label trenutniBrodLabel;
+        private ComboBox brodComboBox;
+        private ComboBox smerComboBox;
+        private ComboBox akcijaComboBox;
     }
 }
 
-// ovde ima bugova, mora da se fixa ili da se reworkuje ceo sistem za ovo (npr. da se ubace slike i tako da se postavlja na matricu ili da se odjednom postavi ceo brod, bira se smer pre toga)
-// mora da se resi bug za brisanje brodova, nece da brise ne radi
+// REWORKAN SISTEM
