@@ -45,39 +45,48 @@ namespace oop_template
                     int velicinaTable = formaZaIzborTable.IzabranaVelicinaTable;
                     List<Brod> brodovi = DobijBrodoveZaVelicinuTable(velicinaTable);
 
-                    if (jeDvaIgraca)
+                    using (FormaZaUnosImena formaZaUnosImena = new FormaZaUnosImena(jeDvaIgraca))
                     {
-                        // Postavljanje brodova za prvog igrača
-                        using (FormaZaPostavljanjeBrodova formaZaPostavljanjeBrodova = new FormaZaPostavljanjeBrodova(velicinaTable, brodovi))
+                        if (formaZaUnosImena.ShowDialog() == DialogResult.OK)
                         {
-                            if (formaZaPostavljanjeBrodova.ShowDialog() == DialogResult.OK)
+                            string imeIgraca1 = formaZaUnosImena.ImeIgraca1;
+                            string imeIgraca2 = jeDvaIgraca ? formaZaUnosImena.ImeIgraca2 : "Kompjuter";
+
+                            if (jeDvaIgraca)
                             {
-                                var brodoviIgrac1 = formaZaPostavljanjeBrodova.PostavljeniBrodovi;
-
-                                // Postavljanje brodova za drugog igrača
-                                using (FormaZaPostavljanjeBrodova formaZaPostavljanjeBrodova2 = new FormaZaPostavljanjeBrodova(velicinaTable, brodovi))
+                                // Postavljanje brodova za prvog igrača
+                                using (FormaZaPostavljanjeBrodova formaZaPostavljanjeBrodova = new FormaZaPostavljanjeBrodova(velicinaTable, brodovi,  imeIgraca1))
                                 {
-                                    if (formaZaPostavljanjeBrodova2.ShowDialog() == DialogResult.OK)
+                                    if (formaZaPostavljanjeBrodova.ShowDialog() == DialogResult.OK)
                                     {
-                                        var brodoviIgrac2 = formaZaPostavljanjeBrodova2.PostavljeniBrodovi;
+                                        var brodoviIgrac1 = formaZaPostavljanjeBrodova.PostavljeniBrodovi;
 
-                                        ZapocniIgru(brodoviIgrac1, brodoviIgrac2, velicinaTable, jeDvaIgraca);
+                                        // Postavljanje brodova za drugog igrača
+                                        using (FormaZaPostavljanjeBrodova formaZaPostavljanjeBrodova2 = new FormaZaPostavljanjeBrodova(velicinaTable, brodovi, imeIgraca2))
+                                        {
+                                            if (formaZaPostavljanjeBrodova2.ShowDialog() == DialogResult.OK)
+                                            {
+                                                var brodoviIgrac2 = formaZaPostavljanjeBrodova2.PostavljeniBrodovi;
+
+                                                ZapocniIgru(brodoviIgrac1, brodoviIgrac2, velicinaTable, jeDvaIgraca, imeIgraca1, imeIgraca2);
+                                            }
+                                        }
                                     }
                                 }
                             }
-                        }
-                    }
-                    else
-                    {
-                        // Postavljanje brodova za jednog igrača i kompjuter
-                        using (FormaZaPostavljanjeBrodova formaZaPostavljanjeBrodova = new FormaZaPostavljanjeBrodova(velicinaTable, brodovi))
-                        {
-                            if (formaZaPostavljanjeBrodova.ShowDialog() == DialogResult.OK)
+                            else
                             {
-                                var brodoviIgrac = formaZaPostavljanjeBrodova.PostavljeniBrodovi;
-                                var brodoviKompjuter = GenerisiNasumicneBrodove(velicinaTable, brodovi);
+                                // Postavljanje brodova za jednog igrača i kompjuter
+                                using (FormaZaPostavljanjeBrodova formaZaPostavljanjeBrodova = new FormaZaPostavljanjeBrodova(velicinaTable, brodovi, imeIgraca1))
+                                {
+                                    if (formaZaPostavljanjeBrodova.ShowDialog() == DialogResult.OK)
+                                    {
+                                        var brodoviIgrac = formaZaPostavljanjeBrodova.PostavljeniBrodovi;
+                                        var brodoviKompjuter = GenerisiNasumicneBrodove(velicinaTable, brodovi);
 
-                                ZapocniIgru(brodoviIgrac, brodoviKompjuter, velicinaTable, jeDvaIgraca);
+                                        ZapocniIgru(brodoviIgrac, brodoviKompjuter, velicinaTable, jeDvaIgraca, imeIgraca1, imeIgraca2);
+                                    }
+                                }
                             }
                         }
                     }
@@ -232,9 +241,12 @@ namespace oop_template
             return pozicije;
         }
 
-        private void ZapocniIgru(List<Brod> brodoviIgrac1, List<Brod> brodoviIgrac2, int velicinaTable, bool jeDvaIgraca)
+        private void ZapocniIgru(List<Brod> brodoviIgrac1, List<Brod> brodoviIgrac2, int velicinaTable, bool jeDvaIgraca, string imeIgraca1, string imeIgraca2)
         {
-            // Ovde treba da se uradi implementacija logike za pocetak igre
+            // Ovde treba da se uradi implementacija logike za pocetak igre, uz koriscenja imena igraca
         }
     }
 }
+
+// bugfix uradjen za nasucmicno postavljanje brodova od strane kompjutera, proveriti da li radi nekim logovanjem brodova koje kompjuter napravi
+// dodato unosenje imena kao nova forma

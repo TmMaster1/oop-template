@@ -68,6 +68,12 @@
     <Compile Include="FormaZaPostavljanjeBrodova.Designer.cs">
       <DependentUpon>FormaZaPostavljanjeBrodova.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormaZaUnosImena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaZaUnosImena.Designer.cs">
+      <DependentUpon>FormaZaUnosImena.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -78,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormaZaPostavljanjeBrodova.resx">
       <DependentUpon>FormaZaPostavljanjeBrodova.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaZaUnosImena.resx">
+      <DependentUpon>FormaZaUnosImena.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

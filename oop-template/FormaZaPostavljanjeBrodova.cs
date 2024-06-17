@@ -18,6 +18,7 @@ namespace oop_template
         private Button[,] poljaTable;
         private Brod trenutniBrod;
         private Smer postavljanjeSmer;
+        private string imeIgraca;
 
         private enum Smer
         {
@@ -32,11 +33,12 @@ namespace oop_template
             get { return postavljeniBrodovi; }
         }
 
-        public FormaZaPostavljanjeBrodova(int velicinaTable, List<Brod> brodovi)
+        public FormaZaPostavljanjeBrodova(int velicinaTable, List<Brod> brodovi, string imeIgraca)
         {
             this.velicinaTable = velicinaTable;
             this.brodovi = new List<Brod>(brodovi); // Napravimo kopiju liste brodova
             this.postavljeniBrodovi = new List<Brod>();
+            this.imeIgraca = imeIgraca; // Postavimo ime igrača
             CustomInitializeComponent();
         }
 
@@ -51,8 +53,8 @@ namespace oop_template
                 for (int j = 0; j < velicinaTable; j++)
                 {
                     poljaTable[i, j] = new Button();
-                    poljaTable[i, j].Size = new Size(40, 40); // Povećana veličina
-                    poljaTable[i, j].Location = new Point(40 * i, 40 * j); // Povećan razmak
+                    poljaTable[i, j].Size = new Size(50, 50); // Povećana veličina
+                    poljaTable[i, j].Location = new Point(50 * i, 50 * j); // Povećan razmak
                     poljaTable[i, j].Click += new EventHandler(PoljaTable_Click);
                     this.Controls.Add(poljaTable[i, j]);
                 }
@@ -60,21 +62,28 @@ namespace oop_template
 
             // Labela za prikaz trenutnog broda
             this.trenutniBrodLabel = new Label();
-            this.trenutniBrodLabel.Location = new Point(40 * velicinaTable, 30);
+            this.trenutniBrodLabel.Location = new Point(50 * velicinaTable, 40);
             this.trenutniBrodLabel.AutoSize = true;
             this.Controls.Add(this.trenutniBrodLabel);
+
+            // Labela za prikaz imena igrača
+            this.imeIgracaLabel = new Label();
+            this.imeIgracaLabel.Text = $"Igrač: {imeIgraca}";
+            this.imeIgracaLabel.Location = new Point(50 * velicinaTable, 10);
+            this.imeIgracaLabel.AutoSize = true;
+            this.Controls.Add(this.imeIgracaLabel);
 
             // Dugme za potvrdu
             this.potvrdiButton = new Button();
             this.potvrdiButton.Text = "Potvrdi";
-            this.potvrdiButton.Location = new Point(40 * velicinaTable, 60);
+            this.potvrdiButton.Location = new Point(50 * velicinaTable, 70);
             this.potvrdiButton.Click += new EventHandler(PotvrdiButton_Click);
-            this.potvrdiButton.Enabled = false; // Disabled until all ships are placed
+            this.potvrdiButton.Enabled = false; // Iskljuceno dok se ne postave svi brodovi
             this.Controls.Add(this.potvrdiButton);
 
             // ComboBox za izbor smera postavljanja broda
             this.smerComboBox = new ComboBox();
-            this.smerComboBox.Location = new Point(40 * velicinaTable, 90);
+            this.smerComboBox.Location = new Point(50 * velicinaTable, 100);
             this.smerComboBox.Items.AddRange(new string[] { "Gore", "Dole", "Levo", "Desno" });
             this.smerComboBox.SelectedIndex = 0;
             this.smerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -83,7 +92,7 @@ namespace oop_template
 
             // ComboBox za izbor broda za postavljanje
             this.brodComboBox = new ComboBox();
-            this.brodComboBox.Location = new Point(40 * velicinaTable, 120);
+            this.brodComboBox.Location = new Point(50 * velicinaTable, 130);
             foreach (var brod in brodovi)
             {
                 this.brodComboBox.Items.Add($"Brod veličine {brod.Velicina}");
@@ -95,7 +104,7 @@ namespace oop_template
 
             // ComboBox za izbor akcije (Postavi ili Obriši)
             this.akcijaComboBox = new ComboBox();
-            this.akcijaComboBox.Location = new Point(40 * velicinaTable, 150);
+            this.akcijaComboBox.Location = new Point(50 * velicinaTable, 160);
             this.akcijaComboBox.Items.AddRange(new string[] { "Postavi", "Obriši" });
             this.akcijaComboBox.SelectedIndex = 0;
             this.akcijaComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -108,7 +117,7 @@ namespace oop_template
             // 
             // FormaZaPostavljanjeBrodova
             // 
-            this.ClientSize = new System.Drawing.Size(40 * (velicinaTable + 5), 40 * velicinaTable);
+            this.ClientSize = new System.Drawing.Size(50 * (velicinaTable + 6), 50 * velicinaTable);
             this.Name = "FormaZaPostavljanjeBrodova";
             this.Text = "Postavljanje brodova";
             this.ResumeLayout(false);
@@ -117,7 +126,7 @@ namespace oop_template
 
         private void FormaZaPostavljanjeBrodova_Load(object sender, EventArgs e)
         {
-            // Kod koji želite da izvršite kada se forma učita
+            // ovde nista
         }
 
         private void PoljaTable_Click(object sender, EventArgs e)
@@ -126,8 +135,8 @@ namespace oop_template
             if (pritisnutoDugme == null)
                 return;
 
-            int x = pritisnutoDugme.Location.X / 40;
-            int y = pritisnutoDugme.Location.Y / 40;
+            int x = pritisnutoDugme.Location.X / 50;
+            int y = pritisnutoDugme.Location.Y / 50;
 
             if (akcijaComboBox.SelectedIndex == 0) // Postavi
             {
@@ -362,7 +371,9 @@ namespace oop_template
         private ComboBox brodComboBox;
         private ComboBox smerComboBox;
         private ComboBox akcijaComboBox;
+        private Label imeIgracaLabel;
     }
 }
 
 // REWORKAN SISTEM
+//Dodato ime igraca

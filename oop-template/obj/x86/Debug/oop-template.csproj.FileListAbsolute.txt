@@ -10,3 +10,4 @@ E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-templ
 E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.CoreCompileInputs.cache
 E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.exe
 E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.pdb
+E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaUnosImena.resources
