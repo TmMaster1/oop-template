@@ -24,3 +24,4 @@ D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.Gen
 D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.CoreCompileInputs.cache
 D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.exe
 D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.pdb
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaIgru.resources

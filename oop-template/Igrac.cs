@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace oop_template
 {
-    internal class Igrac
+    public class Igrac
     {
         public string Ime { get; set; }
         public List<Brod> Brodovi { get; set; }
