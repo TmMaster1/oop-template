@@ -22,10 +22,12 @@ namespace oop_template
             InitializeComponent();
             this.velicinaTable = velicinaTable;
             engine = new Engine(igrac1, igrac2, this, velicinaTable);
-            Engine_NaPogodakDelegate pogodakHandler = Engine_NaPogodak;
-            Engine_NaPromasajDelegate promasajHandler = Engine_NaPromasaj;
+            Engine_NaPotezDelegate pogodakHandler = Engine_NaPogodak;
+            Engine_NaPotezDelegate potopHandler = Engine_NaPotapanje;
+            Engine_NaPotezDelegate promasajHandler = Engine_NaPromasaj;
             Engine_NaPromenuPotezaDelegate promenaHandler = Engine_NaPromenuPoteza;
             engine.NaPogodak += pogodakHandler;
+            engine.NaPotapanje += potopHandler;
             engine.NaPromasaj += promasajHandler;
             engine.NaPromenuPoteza += promenaHandler;
             CustomInitializeComponent();
@@ -126,11 +128,18 @@ namespace oop_template
             engine.NapraviPotez(x, y);
         }
 
-        private void Engine_NaPogodak(Point pozicija, bool igrac1NaPotezu)
+        private void Engine_NaPogodak(Point pozicija)
         {
-            var polja = igrac1NaPotezu ? poljaIgrac2 : poljaIgrac1;
+            var polja = engine.Igrac1NaPotezu ? poljaIgrac2 : poljaIgrac1;
             polja[pozicija.X, pozicija.Y].BackColor = Color.Red;
             MessageBox.Show("Pogodak!");
+        }
+
+        private void Engine_NaPotapanje(Point pozicija)
+        {
+            var polja = engine.Igrac1NaPotezu ? poljaIgrac2 : poljaIgrac1;
+            polja[pozicija.X, pozicija.Y].BackColor = Color.Black;
+            MessageBox.Show("Potopljen!");
         }
 
         private void Engine_NaPromasaj(Point pozicija)
@@ -145,8 +154,7 @@ namespace oop_template
             MessageBox.Show($"Na potezu je: {imeIgracaNaPotezu}");
         }
 
-        public delegate void Engine_NaPogodakDelegate(Point pozicija, bool igrac1NaPotezu);
-        public delegate void Engine_NaPromasajDelegate(Point pozicija);
+        public delegate void Engine_NaPotezDelegate(Point pozicija);
         public delegate void Engine_NaPromenuPotezaDelegate(string imeIgracaNaPotezu);
     }
 }

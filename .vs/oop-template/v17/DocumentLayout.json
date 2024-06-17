@@ -3,32 +3,32 @@
   "WorkspaceRootPath": "D:\\projekat\\potapanje-brodova\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|D:\\projekat\\potapanje-brodova\\oop-template\\igrac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|solutionrelative:oop-template\\igrac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|D:\\projekat\\potapanje-brodova\\oop-template\\engine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|solutionrelative:oop-template\\engine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|D:\\projekat\\potapanje-brodova\\oop-template\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|solutionrelative:oop-template\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|D:\\projekat\\potapanje-brodova\\oop-template\\formazaigru.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|solutionrelative:oop-template\\formazaigru.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|d:\\projekat\\potapanje-brodova\\oop-template\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|solutionrelative:oop-template\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|d:\\projekat\\potapanje-brodova\\oop-template\\igrac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|solutionrelative:oop-template\\igrac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|d:\\projekat\\potapanje-brodova\\oop-template\\formazaigru.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|solutionrelative:oop-template\\formazaigru.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|d:\\projekat\\potapanje-brodova\\oop-template\\formazaigru.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|D:\\projekat\\potapanje-brodova\\oop-template\\formazaigru.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|solutionrelative:oop-template\\formazaigru.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|D:\\projekat\\potapanje-brodova\\oop-template\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|solutionrelative:oop-template\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|d:\\projekat\\potapanje-brodova\\oop-template\\engine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|solutionrelative:oop-template\\engine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3109630B-F42A-4A37-AD83-27A38C9F218A}|oop-template\\oop-template.csproj|D:\\projekat\\potapanje-brodova\\oop-template\\formazapostavljanjebrodova.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -74,11 +74,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 302,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Igrac.cs",
               "DocumentMoniker": "D:\\projekat\\potapanje-brodova\\oop-template\\Igrac.cs",
               "RelativeDocumentMoniker": "oop-template\\Igrac.cs",
@@ -92,39 +92,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\projekat\\potapanje-brodova\\oop-template\\Form1.cs",
               "RelativeDocumentMoniker": "oop-template\\Form1.cs",
               "ToolTip": "D:\\projekat\\potapanje-brodova\\oop-template\\Form1.cs",
               "RelativeToolTip": "oop-template\\Form1.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAAYwPgAAAAAAAAA",
+              "ViewState": "AQIAAOkAAAAAAAAAAADwv/gAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-17T08:33:34.33Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Engine.cs",
               "DocumentMoniker": "D:\\projekat\\potapanje-brodova\\oop-template\\Engine.cs",
               "RelativeDocumentMoniker": "oop-template\\Engine.cs",
               "ToolTip": "D:\\projekat\\potapanje-brodova\\oop-template\\Engine.cs",
               "RelativeToolTip": "oop-template\\Engine.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAmwDAAAAA4AAAA",
+              "ViewState": "AQIAACwAAAAAAAAAAAAAwDMAAABcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-17T09:33:16.19Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "FormaZaIgru.cs",
               "DocumentMoniker": "D:\\projekat\\potapanje-brodova\\oop-template\\FormaZaIgru.cs",
               "RelativeDocumentMoniker": "oop-template\\FormaZaIgru.cs",
               "ToolTip": "D:\\projekat\\potapanje-brodova\\oop-template\\FormaZaIgru.cs",
               "RelativeToolTip": "oop-template\\FormaZaIgru.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABMAAAAsAAAA",
+              "ViewState": "AQIAAGgAAAAAAAAAAAAcwHIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-17T09:01:32.602Z",
               "EditorCaption": ""
@@ -139,8 +139,7 @@
               "RelativeToolTip": "oop-template\\FormaZaUnosImena.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAAQwCMAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T08:33:34.349Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T08:33:34.349Z"
             },
             {
               "$type": "Document",
@@ -152,8 +151,7 @@
               "RelativeToolTip": "oop-template\\FormaZaPostavljanjeBrodova.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAAAE4AAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T08:33:34.615Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T08:33:34.615Z"
             },
             {
               "$type": "Document",
@@ -164,8 +162,7 @@
               "ToolTip": "D:\\projekat\\potapanje-brodova\\oop-template\\FormaZaPostavljanjeBrodova.cs [Design]",
               "RelativeToolTip": "oop-template\\FormaZaPostavljanjeBrodova.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T08:33:34.615Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-06-17T08:33:34.615Z"
             },
             {
               "$type": "Document",
@@ -192,8 +189,7 @@
               "ToolTip": "D:\\projekat\\potapanje-brodova\\oop-template\\FormaZaPostavljanjeBrodova.resx",
               "RelativeToolTip": "oop-template\\FormaZaPostavljanjeBrodova.resx",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2024-06-17T08:33:34.617Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T08:33:34.617Z"
             },
             {
               "$type": "Document",
@@ -205,8 +201,7 @@
               "RelativeToolTip": "oop-template\\FormaZaPostavljanjeBrodova.Designer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T08:33:34.617Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T08:33:34.617Z"
             },
             {
               "$type": "Document",
@@ -229,8 +224,7 @@
               "ToolTip": "D:\\projekat\\potapanje-brodova\\oop-template\\FormaZaUnosImena.cs [Design]",
               "RelativeToolTip": "oop-template\\FormaZaUnosImena.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T08:33:34.619Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-06-17T08:33:34.619Z"
             }
           ]
         },
@@ -240,7 +234,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "FormaZaIgru.Designer.cs",
               "DocumentMoniker": "D:\\projekat\\potapanje-brodova\\oop-template\\FormaZaIgru.Designer.cs",
               "RelativeDocumentMoniker": "oop-template\\FormaZaIgru.Designer.cs",
@@ -253,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "FormaZaIgru.cs [Design]",
               "DocumentMoniker": "D:\\projekat\\potapanje-brodova\\oop-template\\FormaZaIgru.cs",
               "RelativeDocumentMoniker": "oop-template\\FormaZaIgru.cs",
@@ -265,7 +259,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\projekat\\potapanje-brodova\\oop-template\\Form1.cs",
               "RelativeDocumentMoniker": "oop-template\\Form1.cs",
