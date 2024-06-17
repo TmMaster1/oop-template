@@ -33,7 +33,7 @@
             this.labelIgrac2 = new System.Windows.Forms.Label();
             this.textBoxImeIgrac2 = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOtkazi = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelIgrac1
@@ -79,27 +79,27 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(56, 19);
             this.btnOK.TabIndex = 4;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = "Potvrdi";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // btnCancel
+            // btnOtkazi
             // 
-            this.btnCancel.Location = new System.Drawing.Point(148, 55);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(56, 19);
-            this.btnCancel.TabIndex = 5;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnOtkazi.Location = new System.Drawing.Point(148, 55);
+            this.btnOtkazi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOtkazi.Name = "btnOtkazi";
+            this.btnOtkazi.Size = new System.Drawing.Size(56, 19);
+            this.btnOtkazi.TabIndex = 5;
+            this.btnOtkazi.Text = "Otkaži";
+            this.btnOtkazi.UseVisualStyleBackColor = true;
+            this.btnOtkazi.Click += new System.EventHandler(this.btnOtkazi_Click);
             // 
             // FormaZaUnosImena
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(219, 85);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOtkazi);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.textBoxImeIgrac2);
             this.Controls.Add(this.labelIgrac2);
@@ -119,7 +119,7 @@
         private System.Windows.Forms.Label labelIgrac2;
         private System.Windows.Forms.TextBox textBoxImeIgrac2;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnOtkazi;
 
     }
 

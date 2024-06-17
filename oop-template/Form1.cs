@@ -35,7 +35,7 @@ namespace oop_template
         {
             PrikaziDijalogZaIzborTable(false);
         }
-
+            
         private void PrikaziDijalogZaIzborTable(bool jeDvaIgraca)
         {
             using (FormaZaIzborTable formaZaIzborTable = new FormaZaIzborTable())

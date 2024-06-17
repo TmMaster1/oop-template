@@ -82,7 +82,7 @@
             this.labelIzborVelicinePolja.Name = "labelIzborVelicinePolja";
             this.labelIzborVelicinePolja.Size = new System.Drawing.Size(184, 19);
             this.labelIzborVelicinePolja.TabIndex = 3;
-            this.labelIzborVelicinePolja.Text = "Izaberite velicinu polja:";
+            this.labelIzborVelicinePolja.Text = "Izaberite veličinu polja:";
             this.labelIzborVelicinePolja.Click += new System.EventHandler(this.labelIzborVelicinePolja_Click);
             // 
             // potvrdiBtn
