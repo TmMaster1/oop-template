@@ -243,7 +243,10 @@ namespace oop_template
 
         private void ZapocniIgru(List<Brod> brodoviIgrac1, List<Brod> brodoviIgrac2, int velicinaTable, bool jeDvaIgraca, string imeIgraca1, string imeIgraca2)
         {
-            // Ovde treba da se uradi implementacija logike za pocetak igre, uz koriscenja imena igraca
+            Igrac p1 = new Igrac(imeIgraca1, brodoviIgrac1);
+            Igrac p2 = new Igrac(imeIgraca2, brodoviIgrac2);
+
+
         }
     }
 }

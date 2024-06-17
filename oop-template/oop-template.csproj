@@ -56,6 +56,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormaZaIgru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormaZaIgru.Designer.cs">
+      <DependentUpon>FormaZaIgru.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormaZaIzborTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,10 +80,14 @@
     <Compile Include="FormaZaUnosImena.Designer.cs">
       <DependentUpon>FormaZaUnosImena.cs</DependentUpon>
     </Compile>
+    <Compile Include="Igrac.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormaZaIgru.resx">
+      <DependentUpon>FormaZaIgru.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormaZaIzborTable.resx">
       <DependentUpon>FormaZaIzborTable.cs</DependentUpon>

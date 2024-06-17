@@ -11,3 +11,16 @@ E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-templ
 E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.exe
 E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.pdb
 E:\Projekat_OOP_POTAPANJE\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaUnosImena.resources
+D:\projekat\potapanje-brodova\oop-template\bin\Debug\oop-template.exe.config
+D:\projekat\potapanje-brodova\oop-template\bin\Debug\oop-template.exe
+D:\projekat\potapanje-brodova\oop-template\bin\Debug\oop-template.pdb
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.AssemblyReference.cache
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.Form1.resources
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaIzborTable.resources
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaPostavljanjeBrodova.resources
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaUnosImena.resources
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.Properties.Resources.resources
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.GenerateResource.cache
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.CoreCompileInputs.cache
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.exe
+D:\projekat\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.pdb
