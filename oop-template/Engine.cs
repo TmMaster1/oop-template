@@ -104,5 +104,13 @@ namespace oop_template
         public event Engine_NaPotezDelegate NaPotapanje;
         public event Engine_NaPotezDelegate NaPromasaj;
         public event Engine_NaPromenuPotezaDelegate NaPromenuPoteza;
+
+        public void Igra() 
+        {
+            while (pozicije1.Count != 0 || pozicije2.Count != 0) 
+            {
+                NapraviPotez();
+            }
+        }
     }
 }
