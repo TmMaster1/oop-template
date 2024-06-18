@@ -56,14 +56,20 @@ namespace oop_template
                 if (pozicije2.Contains(meta))
                 {
                     pozicije2.Remove(meta);
-                    if (susedniBrod(meta, pozicije2)) 
+                    if (susedniBrod(meta, pozicije2))
                     {
                         NaPogodak(meta);
-                        return;
                     }
-                    NaPotapanje(meta);
+                    else
+                    {
+                        NaPotapanje(meta);
+                    }
+
                 }
-                NaPromasaj(meta);
+                else 
+                {
+                    NaPromasaj(meta);
+                }
             }
             else 
             {
@@ -73,13 +79,19 @@ namespace oop_template
                     if (susedniBrod(meta, pozicije1))
                     {
                         NaPogodak(meta);
-                        return;
                     }
-                    NaPotapanje(meta);
+                    else
+                    {
+                        NaPotapanje(meta);
+                    }
                 }
-                NaPromasaj(meta);
+                else 
+                {
+                    NaPromasaj(meta);
+                }
             }
             Flip(Igrac1NaPotezu);
+            NaPromenuPoteza(Igrac1NaPotezu? Igrac1.Ime : Igrac2.Ime);
         }
 
         private bool susedniBrod(Point trenutni, HashSet<Point> pozicije)
@@ -109,6 +121,8 @@ namespace oop_template
         {
             while (pozicije1.Count != 0 || pozicije2.Count != 0) 
             {
+                // stavi da NapraviPotez zna koje x i y gadja, ostalo valjda valja, uslov kad izadje iz petlje
+                // da uzme i kaze ko je pobednik i da upise pobedu u fajl
                 NapraviPotez();
             }
         }
