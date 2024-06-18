@@ -97,7 +97,7 @@
               "RelativeDocumentMoniker": "oop-template\\Engine.cs",
               "ToolTip": "D:\\projekat\\potapanje-brodova\\oop-template\\Engine.cs",
               "RelativeToolTip": "oop-template\\Engine.cs",
-              "ViewState": "AQIAAGsAAAAAAAAAAAAswHwAAABJAAAA",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAYwD8AAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-17T09:33:16.19Z",
               "EditorCaption": ""
@@ -110,7 +110,7 @@
               "RelativeDocumentMoniker": "oop-template\\FormaZaIgru.cs",
               "ToolTip": "D:\\projekat\\potapanje-brodova\\oop-template\\FormaZaIgru.cs",
               "RelativeToolTip": "oop-template\\FormaZaIgru.cs",
-              "ViewState": "AQIAAJ4AAAAAAAAAAAAAwJQAAAAoAAAA",
+              "ViewState": "AQIAAJIAAAAAAAAAAAAAwLoAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-17T09:01:32.602Z",
               "EditorCaption": ""
@@ -125,7 +125,8 @@
               "RelativeToolTip": "oop-template\\Form1.cs",
               "ViewState": "AQIAANoAAAAAAAAAAAAswPgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T08:33:34.33Z"
+              "WhenOpened": "2024-06-17T08:33:34.33Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -264,7 +265,8 @@
               "ToolTip": "D:\\projekat\\potapanje-brodova\\oop-template\\Form1.cs [Design]",
               "RelativeToolTip": "oop-template\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T08:33:34.62Z"
+              "WhenOpened": "2024-06-17T08:33:34.62Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",

@@ -88,10 +88,6 @@ namespace oop_template
                 AutoSize = true
             };
             this.Controls.Add(imeIgraca2Label);
-
-            InicijalizujPolja(poljaIgrac1, engine.Igrac1.Brodovi);
-            InicijalizujPolja(poljaIgrac2, engine.Igrac2.Brodovi);
-
             this.ClientSize = new Size(40 * velicinaTable * 2, 40 * velicinaTable + 50);
             this.Name = "FormaZaIgru";
             this.Text = "Igra";
@@ -99,18 +95,7 @@ namespace oop_template
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-
-        private void InicijalizujPolja(Button[,] polja, List<Brod> brodovi)
-        {
-            foreach (var brod in brodovi)
-            {
-                foreach (var pozicija in brod.Pozicije)
-                {
-                    polja[pozicija.X, pozicija.Y].BackColor = Color.Gray;
-                }
-            }
-        }
-
+        
         private void PoljaIgrac1_Click(object sender, EventArgs e)
         {
             Button pritisnutoDugme = sender as Button;
@@ -152,8 +137,9 @@ namespace oop_template
         private void Engine_NaPromasaj(Point pozicija)
         {
             var polja = engine.Igrac1NaPotezu ? poljaIgrac2 : poljaIgrac1;
-            polja[pozicija.X, pozicija.Y].BackColor = Color.Gray;
+            polja[pozicija.X, pozicija.Y].BackColor = Color.DarkBlue;
             promasajZvuk.Play();
+            engine.Igrac1NaPotezu = !engine.Igrac1NaPotezu; // menja se igrac
             MessageBox.Show("Promašaj!");
         }
 
@@ -196,3 +182,6 @@ namespace oop_template
         }
     }
 }
+
+// InicijalizujPolja je nepotrebna metoda buduci da ne
+// bi trebalo da se vide pozicije brodova posle postavljanja

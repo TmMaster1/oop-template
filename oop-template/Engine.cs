@@ -47,6 +47,7 @@ namespace oop_template
         public void NapraviPotez(int x, int y)
         {
             //igrac koji je na redu pravi svoj potez i u zavisnosti od ishoda se radi logika
+            //pri promasaju se jedino menja ko je na potezu
             Point meta = new Point(x, y);
             if (Igrac1NaPotezu)
             {
@@ -71,6 +72,7 @@ namespace oop_template
                 else
                 {
                     NaPromasaj?.Invoke(meta);
+                    NaPromenuPoteza?.Invoke(Igrac1NaPotezu ? Igrac1.Ime : Igrac2.Ime);
                 }
             }
             else
@@ -96,11 +98,9 @@ namespace oop_template
                 else
                 {
                     NaPromasaj?.Invoke(meta);
+                    NaPromenuPoteza?.Invoke(Igrac1NaPotezu ? Igrac1.Ime : Igrac2.Ime);
                 }
             }
-
-            Igrac1NaPotezu = !Igrac1NaPotezu; // menja se igrac
-            NaPromenuPoteza?.Invoke(Igrac1NaPotezu ? Igrac1.Ime : Igrac2.Ime);
         }
 
         private bool SusedniBrod(Point trenutni, HashSet<Point> pozicije)
