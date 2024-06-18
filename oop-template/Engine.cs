@@ -43,10 +43,7 @@ namespace oop_template
                 }
             }
         }
-        public void Flip(bool vrednost)
-        {
-            vrednost = !vrednost;
-        }
+
         public void NapraviPotez(int x, int y)
         {
             //igrac koji je na redu pravi svoj potez i u zavisnosti od ishoda se radi logika
@@ -56,45 +53,57 @@ namespace oop_template
                 if (pozicije2.Contains(meta))
                 {
                     pozicije2.Remove(meta);
-                    if (susedniBrod(meta, pozicije2))
+                    if (SusedniBrod(meta, pozicije2))
                     {
-                        NaPogodak(meta);
+                        NaPogodak?.Invoke(meta);
                     }
                     else
                     {
-                        NaPotapanje(meta);
+                        NaPotapanje?.Invoke(meta);
                     }
 
+                    if (pozicije2.Count == 0)
+                    {
+                        NaKrajIgre?.Invoke(Igrac1.Ime);
+                        return;
+                    }
                 }
-                else 
+                else
                 {
-                    NaPromasaj(meta);
+                    NaPromasaj?.Invoke(meta);
                 }
             }
-            else 
+            else
             {
                 if (pozicije1.Contains(meta))
                 {
                     pozicije1.Remove(meta);
-                    if (susedniBrod(meta, pozicije1))
+                    if (SusedniBrod(meta, pozicije1))
                     {
-                        NaPogodak(meta);
+                        NaPogodak?.Invoke(meta);
                     }
                     else
                     {
-                        NaPotapanje(meta);
+                        NaPotapanje?.Invoke(meta);
+                    }
+
+                    if (pozicije1.Count == 0)
+                    {
+                        NaKrajIgre?.Invoke(Igrac2.Ime);
+                        return;
                     }
                 }
-                else 
+                else
                 {
-                    NaPromasaj(meta);
+                    NaPromasaj?.Invoke(meta);
                 }
             }
-            Flip(Igrac1NaPotezu);
-            NaPromenuPoteza(Igrac1NaPotezu? Igrac1.Ime : Igrac2.Ime);
+
+            Igrac1NaPotezu = !Igrac1NaPotezu; // menja se igrac
+            NaPromenuPoteza?.Invoke(Igrac1NaPotezu ? Igrac1.Ime : Igrac2.Ime);
         }
 
-        private bool susedniBrod(Point trenutni, HashSet<Point> pozicije)
+        private bool SusedniBrod(Point trenutni, HashSet<Point> pozicije)
         {
             int[] redSmerovi = { -1, 1, 0, 0 };
             int[] kolSmerovi = { 0, 0, -1, 1 };
@@ -112,19 +121,17 @@ namespace oop_template
             }
             return false;
         }
+
         public event Engine_NaPotezDelegate NaPogodak;
         public event Engine_NaPotezDelegate NaPotapanje;
         public event Engine_NaPotezDelegate NaPromasaj;
         public event Engine_NaPromenuPotezaDelegate NaPromenuPoteza;
+        public event Engine_NaKrajIgreDelegate NaKrajIgre;
 
-        public void Igra() 
-        {
-            while (pozicije1.Count != 0 || pozicije2.Count != 0) 
-            {
-                // stavi da NapraviPotez zna koje x i y gadja, ostalo valjda valja, uslov kad izadje iz petlje
-                // da uzme i kaze ko je pobednik i da upise pobedu u fajl
-                NapraviPotez();
-            }
-        }
+        public delegate void Engine_NaPotezDelegate(Point pozicija);
+        public delegate void Engine_NaPromenuPotezaDelegate(string imeIgracaNaPotezu);
+        public delegate void Engine_NaKrajIgreDelegate(string imePobednika);
     }
 }
+
+//izbacena funkcija Flip jer nema funkcionalnost

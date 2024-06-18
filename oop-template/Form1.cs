@@ -243,10 +243,26 @@ namespace oop_template
 
         private void ZapocniIgru(List<Brod> brodoviIgrac1, List<Brod> brodoviIgrac2, int velicinaTable, bool jeDvaIgraca, string imeIgraca1, string imeIgraca2)
         {
-            Igrac p1 = new Igrac(imeIgraca1, brodoviIgrac1);
-            Igrac p2 = new Igrac(imeIgraca2, brodoviIgrac2);
+            Igrac igrac1 = new Igrac(imeIgraca1, brodoviIgrac1);
+            Igrac igrac2 = new Igrac(imeIgraca2, brodoviIgrac2);
 
+            while (true)
+            {
+                using (FormaZaIgru formaZaIgru = new FormaZaIgru(igrac1, igrac2, velicinaTable, jeDvaIgraca))
+                {
+                    DialogResult rezultat = formaZaIgru.ShowDialog();
 
+                    if (rezultat == DialogResult.Retry)
+                    {
+                        igrac1 = new Igrac(imeIgraca1, brodoviIgrac1);
+                        igrac2 = new Igrac(imeIgraca2, brodoviIgrac2);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
         }
     }
 }

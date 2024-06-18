@@ -40,3 +40,17 @@ D:\ProgramationRatinac\potapanje-brodova\oop-template\obj\x86\Debug\oop-template
 D:\ProgramationRatinac\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.CoreCompileInputs.cache
 D:\ProgramationRatinac\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.exe
 D:\ProgramationRatinac\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.pdb
+E:\potapanje\potapanje-brodova\oop-template\bin\Debug\oop-template.exe.config
+E:\potapanje\potapanje-brodova\oop-template\bin\Debug\oop-template.exe
+E:\potapanje\potapanje-brodova\oop-template\bin\Debug\oop-template.pdb
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.AssemblyReference.cache
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.Form1.resources
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaIgru.resources
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaIzborTable.resources
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaPostavljanjeBrodova.resources
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.FormaZaUnosImena.resources
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop_template.Properties.Resources.resources
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.GenerateResource.cache
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.csproj.CoreCompileInputs.cache
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.exe
+E:\potapanje\potapanje-brodova\oop-template\obj\x86\Debug\oop-template.pdb

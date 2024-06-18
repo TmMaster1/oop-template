@@ -18,8 +18,8 @@ namespace oop_template
         private Button[,] poljaIgrac1;
         private Button[,] poljaIgrac2;
         public System.Media.SoundPlayer potapanjeZvuk;
-        public System.Media.SoundPlayer promasajZvuk; 
-        public System.Media.SoundPlayer pobedaZvuk; 
+        public System.Media.SoundPlayer promasajZvuk;
+        public System.Media.SoundPlayer pobedaZvuk;
         public System.Media.SoundPlayer pogodakZvuk;
 
         public FormaZaIgru(Igrac igrac1, Igrac igrac2, int velicinaTable, bool jeDvaIgraca)
@@ -27,31 +27,27 @@ namespace oop_template
             InitializeComponent();
             this.velicinaTable = velicinaTable;
             engine = new Engine(igrac1, igrac2, this, velicinaTable);
-            potapanjeZvuk = new System.Media.SoundPlayer("..\\..\\..\\sound\\potapanje.wav");
+            potapanjeZvuk = new SoundPlayer("..\\..\\..\\sound\\potapanje.wav");
             potapanjeZvuk.Load();
-            promasajZvuk = new System.Media.SoundPlayer("..\\..\\..\\sound\\promasaj.wav");
+            promasajZvuk = new SoundPlayer("..\\..\\..\\sound\\promasaj.wav");
             promasajZvuk.Load();
-            pobedaZvuk = new System.Media.SoundPlayer("..\\..\\..\\sound\\pobeda.wav");
+            pobedaZvuk = new SoundPlayer("..\\..\\..\\sound\\pobeda.wav");
             pobedaZvuk.Load();
-            pogodakZvuk = new System.Media.SoundPlayer("..\\..\\..\\sound\\pogodak.wav");
+            pogodakZvuk = new SoundPlayer("..\\..\\..\\sound\\pogodak.wav");
             pogodakZvuk.Load();
-            Engine_NaPotezDelegate pogodakHandler = Engine_NaPogodak;
-            Engine_NaPotezDelegate potopHandler = Engine_NaPotapanje;
-            Engine_NaPotezDelegate promasajHandler = Engine_NaPromasaj;
-            Engine_NaPromenuPotezaDelegate promenaHandler = Engine_NaPromenuPoteza;
-            engine.NaPogodak += pogodakHandler;
-            engine.NaPotapanje += potopHandler;
-            engine.NaPromasaj += promasajHandler;
-            engine.NaPromenuPoteza += promenaHandler;
+            engine.NaPogodak += Engine_NaPogodak;
+            engine.NaPotapanje += Engine_NaPotapanje;
+            engine.NaPromasaj += Engine_NaPromasaj;
+            engine.NaPromenuPoteza += Engine_NaPromenuPoteza;
+            engine.NaKrajIgre += Engine_NaKrajIgre;
             CustomInitializeComponent();
         }
 
-        private void FormaZaIgru_Load(object sender, EventArgs e) { }
         private void CustomInitializeComponent()
         {
             this.SuspendLayout();
 
-            poljaIgrac1 = new Button[velicinaTable, velicinaTable]; // kreiranje table za igraca1
+            poljaIgrac1 = new Button[velicinaTable, velicinaTable];
             for (int i = 0; i < velicinaTable; i++)
             {
                 for (int j = 0; j < velicinaTable; j++)
@@ -59,12 +55,12 @@ namespace oop_template
                     poljaIgrac1[i, j] = new Button();
                     poljaIgrac1[i, j].Size = new Size(30, 30);
                     poljaIgrac1[i, j].Location = new Point(30 * i, 30 * j);
-                    poljaIgrac1[i, j].Click += new EventHandler(PoljaIgrac1_Click);
+                    poljaIgrac1[i, j].Click += PoljaIgrac1_Click;
                     this.Controls.Add(poljaIgrac1[i, j]);
                 }
             }
 
-            poljaIgrac2 = new Button[velicinaTable, velicinaTable]; // kreiranje table za igraca2 
+            poljaIgrac2 = new Button[velicinaTable, velicinaTable];
             for (int i = 0; i < velicinaTable; i++)
             {
                 for (int j = 0; j < velicinaTable; j++)
@@ -72,37 +68,37 @@ namespace oop_template
                     poljaIgrac2[i, j] = new Button();
                     poljaIgrac2[i, j].Size = new Size(30, 30);
                     poljaIgrac2[i, j].Location = new Point(30 * i + 40 * velicinaTable, 30 * j);
-                    poljaIgrac2[i, j].Click += new EventHandler(PoljaIgrac2_Click);
+                    poljaIgrac2[i, j].Click += PoljaIgrac2_Click;
                     this.Controls.Add(poljaIgrac2[i, j]);
                 }
             }
 
-            // Prikaz imena igrača
-            Label imeIgraca1Label = new Label();
-            imeIgraca1Label.Text = engine.Igrac1.Ime;
-            imeIgraca1Label.Location = new Point(30 * velicinaTable / 2, 30 * velicinaTable + 10);
-            imeIgraca1Label.AutoSize = true;
+            Label imeIgraca1Label = new Label
+            {
+                Text = engine.Igrac1.Ime,
+                Location = new Point(30 * velicinaTable / 2, 30 * velicinaTable + 10),
+                AutoSize = true
+            };
             this.Controls.Add(imeIgraca1Label);
 
-            Label imeIgraca2Label = new Label();
-            imeIgraca2Label.Text = engine.Igrac2.Ime;
-            imeIgraca2Label.Location = new Point(30 * velicinaTable / 2 + 40 * velicinaTable, 30 * velicinaTable + 10);
-            imeIgraca2Label.AutoSize = true;
+            Label imeIgraca2Label = new Label
+            {
+                Text = engine.Igrac2.Ime,
+                Location = new Point(30 * velicinaTable / 2 + 40 * velicinaTable, 30 * velicinaTable + 10),
+                AutoSize = true
+            };
             this.Controls.Add(imeIgraca2Label);
 
             InicijalizujPolja(poljaIgrac1, engine.Igrac1.Brodovi);
             InicijalizujPolja(poljaIgrac2, engine.Igrac2.Brodovi);
 
-            // 
-            // FormaZaIgru
-            // 
-            this.ClientSize = new System.Drawing.Size(40 * velicinaTable * 2, 40 * velicinaTable + 50);
+            this.ClientSize = new Size(40 * velicinaTable * 2, 40 * velicinaTable + 50);
             this.Name = "FormaZaIgru";
             this.Text = "Igra";
+            this.Load += FormaZaIgru_Load;
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-
 
         private void InicijalizujPolja(Button[,] polja, List<Brod> brodovi)
         {
@@ -118,10 +114,7 @@ namespace oop_template
         private void PoljaIgrac1_Click(object sender, EventArgs e)
         {
             Button pritisnutoDugme = sender as Button;
-            if (pritisnutoDugme == null)
-            {
-                return;
-            }
+            if (pritisnutoDugme == null) return;
 
             int x = pritisnutoDugme.Location.X / 30;
             int y = pritisnutoDugme.Location.Y / 30;
@@ -132,10 +125,9 @@ namespace oop_template
         private void PoljaIgrac2_Click(object sender, EventArgs e)
         {
             Button pritisnutoDugme = sender as Button;
-            if (pritisnutoDugme == null)
-                return;
+            if (pritisnutoDugme == null) return;
 
-            int x = pritisnutoDugme.Location.X / 30;
+            int x = (pritisnutoDugme.Location.X - 40 * velicinaTable) / 30;
             int y = pritisnutoDugme.Location.Y / 30;
 
             engine.NapraviPotez(x, y);
@@ -152,7 +144,7 @@ namespace oop_template
         private void Engine_NaPotapanje(Point pozicija)
         {
             var polja = engine.Igrac1NaPotezu ? poljaIgrac2 : poljaIgrac1;
-            polja[pozicija.X, pozicija.Y].BackColor = Color.Black;
+            polja[pozicija.X, pozicija.Y].BackColor = Color.DarkRed;
             potapanjeZvuk.Play();
             MessageBox.Show("Potopljen!");
         }
@@ -160,7 +152,7 @@ namespace oop_template
         private void Engine_NaPromasaj(Point pozicija)
         {
             var polja = engine.Igrac1NaPotezu ? poljaIgrac2 : poljaIgrac1;
-            polja[pozicija.X, pozicija.Y].BackColor = Color.Blue;
+            polja[pozicija.X, pozicija.Y].BackColor = Color.Gray;
             promasajZvuk.Play();
             MessageBox.Show("Promašaj!");
         }
@@ -168,9 +160,39 @@ namespace oop_template
         private void Engine_NaPromenuPoteza(string imeIgracaNaPotezu)
         {
             MessageBox.Show($"Na potezu je: {imeIgracaNaPotezu}");
+
+            bool igrac1NaPotezu = engine.Igrac1NaPotezu;
+            for (int i = 0; i < velicinaTable; i++)
+            {
+                for (int j = 0; j < velicinaTable; j++)
+                {
+                    poljaIgrac1[i, j].Enabled = !igrac1NaPotezu;
+                    poljaIgrac2[i, j].Enabled = igrac1NaPotezu;
+                }
+            }
         }
 
-        public delegate void Engine_NaPotezDelegate(Point pozicija);
-        public delegate void Engine_NaPromenuPotezaDelegate(string imeIgracaNaPotezu);
+        private void Engine_NaKrajIgre(string imePobednika)
+        {
+            pobedaZvuk.Play();
+            MessageBox.Show($"Igra je završena! Pobednik je: {imePobednika}");
+
+            DialogResult rezultat = MessageBox.Show("Želite li da započnete novu igru?", "Kraj igre", MessageBoxButtons.YesNo);
+            if (rezultat == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Retry;
+            }
+            else
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+
+            this.Close();
+        }
+
+        private void FormaZaIgru_Load(object sender, EventArgs e)
+        {
+            Engine_NaPromenuPoteza(engine.Igrac1NaPotezu ? engine.Igrac1.Ime : engine.Igrac2.Ime);
+        }
     }
 }
