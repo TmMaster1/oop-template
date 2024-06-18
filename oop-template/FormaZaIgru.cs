@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Media;
 using System.Windows.Forms;
 
 namespace oop_template
@@ -16,12 +17,24 @@ namespace oop_template
         private Engine engine;
         private Button[,] poljaIgrac1;
         private Button[,] poljaIgrac2;
+        public System.Media.SoundPlayer potapanjeZvuk;
+        public System.Media.SoundPlayer promasajZvuk; 
+        public System.Media.SoundPlayer pobedaZvuk; 
+        public System.Media.SoundPlayer pogodakZvuk;
 
         public FormaZaIgru(Igrac igrac1, Igrac igrac2, int velicinaTable, bool jeDvaIgraca)
         {
             InitializeComponent();
             this.velicinaTable = velicinaTable;
             engine = new Engine(igrac1, igrac2, this, velicinaTable);
+            potapanjeZvuk = new System.Media.SoundPlayer("..\\..\\..\\sound\\potapanje.wav");
+            potapanjeZvuk.Load();
+            promasajZvuk = new System.Media.SoundPlayer("..\\..\\..\\sound\\promasaj.wav");
+            promasajZvuk.Load();
+            pobedaZvuk = new System.Media.SoundPlayer("..\\..\\..\\sound\\pobeda.wav");
+            pobedaZvuk.Load();
+            pogodakZvuk = new System.Media.SoundPlayer("..\\..\\..\\sound\\pogodak.wav");
+            pogodakZvuk.Load();
             Engine_NaPotezDelegate pogodakHandler = Engine_NaPogodak;
             Engine_NaPotezDelegate potopHandler = Engine_NaPotapanje;
             Engine_NaPotezDelegate promasajHandler = Engine_NaPromasaj;
@@ -132,6 +145,7 @@ namespace oop_template
         {
             var polja = engine.Igrac1NaPotezu ? poljaIgrac2 : poljaIgrac1;
             polja[pozicija.X, pozicija.Y].BackColor = Color.Red;
+            pogodakZvuk.Play();
             MessageBox.Show("Pogodak!");
         }
 
@@ -139,6 +153,7 @@ namespace oop_template
         {
             var polja = engine.Igrac1NaPotezu ? poljaIgrac2 : poljaIgrac1;
             polja[pozicija.X, pozicija.Y].BackColor = Color.Black;
+            potapanjeZvuk.Play();
             MessageBox.Show("Potopljen!");
         }
 
@@ -146,6 +161,7 @@ namespace oop_template
         {
             var polja = engine.Igrac1NaPotezu ? poljaIgrac2 : poljaIgrac1;
             polja[pozicija.X, pozicija.Y].BackColor = Color.Blue;
+            promasajZvuk.Play();
             MessageBox.Show("Promašaj!");
         }
 
